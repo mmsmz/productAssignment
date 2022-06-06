@@ -1,0 +1,33 @@
+CREATE TABLE product (
+	productId  varchar(10) primary key,
+	name varchar(140),
+	description varchar(255),
+	price decimal(18,2),
+	status varchar(100),
+	dateOfLaunch date
+);
+
+create table category (
+   categoryId varchar(10) primary key,
+   name  varchar(10),
+   description  varchar(10)
+);
+
+drop table productCategory;
+
+create table productCategory(
+  proCatId  varchar(10) primary key,
+  productId  varchar(10),
+  categoryId   varchar(10),
+  FOREIGN KEY (productId) REFERENCES product(productId) ,
+  FOREIGN KEY (categoryId) REFERENCES category(categoryId) 
+);
+
+create table productComment (
+  productCmntId varchar(10) primary key,
+  comment   varchar(10),
+  createdTime  date,
+ productId varchar(10),
+FOREIGN KEY (productId) REFERENCES product(productId) 
+   
+);
