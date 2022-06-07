@@ -16,9 +16,9 @@ import java.time.LocalDate;
 public class ProductEntity {
 
     @Id
-    @GenericGenerator(name = "sequence_item_id", strategy = "com.product.util.ProductIdGen")
-    @GeneratedValue(generator = "sequence_item_id")
-    @Column(name = "productId")
+    @GenericGenerator(name = "sequence_product_id", strategy = "com.product.util.ProductIdGen")
+    @GeneratedValue(generator = "sequence_product_id")
+    @Column(name = "productid")
     private String productId;
 
     @NotNull
@@ -32,6 +32,10 @@ public class ProductEntity {
     @NotNull
     @Column(name = "price")
     private double price;
+
+    @NotNull
+    @Column(name = "status")
+    private int status;
 
     @Nullable
     @Column(name = "dateOfLaunch")
