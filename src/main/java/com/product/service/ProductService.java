@@ -5,4 +5,8 @@ import com.product.dto.ResponseDTO;
 
 public interface ProductService {
     ResponseDTO createProduct(ProductDTO productDTO);
+
+    ResponseDTO updateProduct(ProductDTO productDTO);
+
+    ResponseDTO deleteProduct(String productId);
 }

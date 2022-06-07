@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
                 productEntity.setName(productDTO.getName());
                 productEntity.setDescription(productDTO.getDescription());
                 productEntity.setPrice(productDTO.getPrice());
-                productEntity.setStatus(1); // active
+                productEntity.setStatus('A'); // active
                 productEntity.setDateOfLaunch(LocalDate.now());
 
                 productRepository.save(productEntity);
@@ -39,8 +39,43 @@ public class ProductServiceImpl implements ProductService {
         } catch (Exception e) {
             return ResponseDTO.builder().status(Constant.ERROR).build();
         }
+    }
 
+    @Override
+    public ResponseDTO updateProduct(ProductDTO productDTO) {
+        ProductEntity productEntity = productRepository.findByProductId(productDTO.getProductId());
 
+        try {
+            if (!productEntity.getProductId().isEmpty()) {
+                productEntity.setName(productDTO.getName());
+                productEntity.setDescription(productDTO.getDescription());
+                productEntity.setPrice(productDTO.getPrice());
+                productEntity.setStatus('A'); // active
+                productEntity.setDateOfLaunch(LocalDate.now());
+                productRepository.save(productEntity);
+                return ResponseDTO.builder().status(Constant.SUCCESS).build();
+            }
+            return ResponseDTO.builder().status(Constant.VALIDATION_FAILURE).build();
+        } catch (Exception e) {
+            return ResponseDTO.builder().status(Constant.ERROR).build();
+        }
+
+    }
+
+    @Override
+    public ResponseDTO deleteProduct(String productId) {
+
+        ProductEntity productEntity = productRepository.findByProductId(productId);
+
+        try {
+            if (!productEntity.getProductId().isEmpty()) {
+                productEntity.setStatus('D'); // deActivate
+                return ResponseDTO.builder().status(Constant.SUCCESS).build();
+            }
+            return ResponseDTO.builder().status(Constant.VALIDATION_FAILURE).build();
+        } catch (Exception e) {
+            return ResponseDTO.builder().status(Constant.ERROR).build();
+        }
     }
 
 

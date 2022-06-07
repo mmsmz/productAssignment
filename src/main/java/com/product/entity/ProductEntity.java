@@ -35,7 +35,7 @@ public class ProductEntity {
 
     @NotNull
     @Column(name = "status")
-    private int status;
+    private char status;
 
     @Nullable
     @Column(name = "dateOfLaunch")

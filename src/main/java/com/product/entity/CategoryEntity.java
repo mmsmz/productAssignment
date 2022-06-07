@@ -3,9 +3,11 @@ package com.product.entity;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
@@ -14,8 +16,6 @@ import javax.persistence.*;
 public class CategoryEntity {
 
     @Id
-    @GenericGenerator(name = "sequence_category_id", strategy = "com.product.util.ProductIdGen")
-    @GeneratedValue(generator = "sequence_category_id")
     @Column(name = "categoryid")
     private String categoryid;
 
@@ -26,6 +26,5 @@ public class CategoryEntity {
     @NotNull
     @Column(name = "description")
     private String description;
-
 
 }
