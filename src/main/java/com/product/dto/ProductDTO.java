@@ -8,7 +8,7 @@ public class ProductDTO {
 
     String name;
     String description;
-    Double price;
+    double price;
     String category;
 
 

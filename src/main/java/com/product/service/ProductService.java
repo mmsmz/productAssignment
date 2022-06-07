@@ -1,5 +1,8 @@
 package com.product.service;
 
-public interface ProductService {
+import com.product.dto.ProductDTO;
+import com.product.dto.ResponseDTO;
 
+public interface ProductService {
+    ResponseDTO createProduct(ProductDTO productDTO);
 }
