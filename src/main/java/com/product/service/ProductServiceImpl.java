@@ -1,9 +1,6 @@
 package com.product.service;
 
-import com.product.dto.AllProductsDTO;
-import com.product.dto.ProductDTO;
-import com.product.dto.ResponseAllProducts;
-import com.product.dto.ResponseDTO;
+import com.product.dto.*;
 import com.product.entity.CategoryEntity;
 import com.product.entity.ProductCategoryEntity;
 import com.product.entity.ProductCommentEntity;
@@ -18,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -151,45 +147,41 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseAllProducts getPremiumProductList() {
+    public ResponsePremiumProductDTO getPremiumProductList() {
 
-        List<AllProductsDTO> listAllProduct = new ArrayList<>();
+        List<PremiumProductsDTO> premiumProductsDTOList = new ArrayList<>();
 
         try {
             List<ProductEntity> productDetail = productRepository.getPremiumProduct();
 
                 for (ProductEntity productEntity : productDetail) {
-                    AllProductsDTO allProductsDTO = new AllProductsDTO();
-                    allProductsDTO.setProductName(productEntity.getName());
-                    allProductsDTO.setProductPrice(productEntity.getPrice());
-                    allProductsDTO.setProductDescription(productEntity.getDescription());
+                    PremiumProductsDTO premiumProductsDTO = new PremiumProductsDTO();
+                    premiumProductsDTO.setProductName(productEntity.getName());
+                    premiumProductsDTO.setProductPrice(productEntity.getPrice());
+                    premiumProductsDTO.setProductDescription(productEntity.getDescription());
 
                     List<ProductCategoryEntity> productCategoryEntities = productCategoryRepository.findByProductId(productEntity.getProductId());
 
                     for(ProductCategoryEntity productCategoryEntity :productCategoryEntities){
                         CategoryEntity categoryEntity = categoryRepository.findByCategoryid(productCategoryEntity.getCategoryId());
-                        allProductsDTO.setCategoryName(categoryEntity.getName());
-                        allProductsDTO.setCategoryDescription(categoryEntity.getDescription());
-
+                        premiumProductsDTO.setCategoryName(categoryEntity.getName());
+                        premiumProductsDTO.setCategoryDescription(categoryEntity.getDescription());
                     }
 
                     List<ProductCommentEntity> productCommentEntityList = productCommentRepository.findByProductId(productEntity.getProductId());
                     for (ProductCommentEntity commentEntity : productCommentEntityList) {
                         if (commentEntity.getComment()!=null && !commentEntity.getComment().isEmpty()) {
-                            allProductsDTO.setComment(commentEntity.getComment());
-                            allProductsDTO.setCreateTime(commentEntity.getCreateTime());
+                            premiumProductsDTO.setComment(commentEntity.getComment());
+                            premiumProductsDTO.setCreateTime(commentEntity.getCreateTime());
                         }
                     }
-
-                    listAllProduct.add(allProductsDTO);
-
-
+                    premiumProductsDTOList.add(premiumProductsDTO);
             }
 
-            return ResponseAllProducts.builder().allProductsDTOS(listAllProduct).status(Constant.SUCCESS).build();
+            return ResponsePremiumProductDTO.builder().list(premiumProductsDTOList).status(Constant.SUCCESS).build();
 
         } catch (Exception e) {
-            return ResponseAllProducts.builder().status(Constant.ERROR).build();
+            return ResponsePremiumProductDTO.builder().status(Constant.ERROR).build();
         }
 
     }

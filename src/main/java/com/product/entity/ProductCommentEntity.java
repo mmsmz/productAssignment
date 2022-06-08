@@ -1,11 +1,12 @@
 package com.product.entity;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "productcomment")
@@ -17,11 +18,9 @@ public class ProductCommentEntity {
     @Column(name = "productcmntid")
     private String productCommentId;
 
-    @NotNull
     @Column(name = "comment")
     private String comment;
 
-    @NotNull
     @Column(name = "createdTime")
     private String createTime;
 

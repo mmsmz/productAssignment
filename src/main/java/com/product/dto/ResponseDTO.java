@@ -10,5 +10,4 @@ public class ResponseDTO {
     String status;
     String message;
 
-
 }

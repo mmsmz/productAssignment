@@ -3,7 +3,7 @@ package com.product.dto;
 import lombok.Data;
 
 @Data
-public class AllProductsDTO {
+public class PremiumProductsDTO {
 
     // product table
     private String productName;
