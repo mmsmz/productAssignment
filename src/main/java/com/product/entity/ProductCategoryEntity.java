@@ -5,10 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "productcategory")
@@ -17,8 +14,9 @@ import javax.persistence.Table;
 public class ProductCategoryEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "procatid")
-    private String productCategoryId;
+    private Integer productCategoryId;
 
     @Column(name = "productid")
     private String productId;

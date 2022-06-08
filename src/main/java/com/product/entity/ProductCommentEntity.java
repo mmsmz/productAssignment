@@ -14,8 +14,6 @@ import javax.persistence.*;
 public class ProductCommentEntity {
 
     @Id
-    @GenericGenerator(name = "sequence_poductcmnt_id", strategy = "com.product.util.ProductIdGen")
-    @GeneratedValue(generator = "sequence_poductcmnt_id")
     @Column(name = "productcmntid")
     private String productCommentId;
 
@@ -24,7 +22,10 @@ public class ProductCommentEntity {
     private String comment;
 
     @NotNull
-    @Column(name = "description")
-    private String description;
+    @Column(name = "createdTime")
+    private String createTime;
+
+    @Column(name = "productid")
+    private String productId;
 
 }
