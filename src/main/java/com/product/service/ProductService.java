@@ -13,5 +13,5 @@ public interface ProductService {
 
     ResponseAllProducts getProductList(String categoryId);
 
-    ResponseAllProducts getPremiumProductList(String categoryId);
+    ResponseAllProducts getPremiumProductList();
 }

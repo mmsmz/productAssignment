@@ -151,7 +151,46 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseAllProducts getPremiumProductList(String categoryId) {
-        return null;
+    public ResponseAllProducts getPremiumProductList() {
+
+        List<AllProductsDTO> listAllProduct = new ArrayList<>();
+
+        try {
+            List<ProductEntity> productDetail = productRepository.getPremiumProduct();
+
+                for (ProductEntity productEntity : productDetail) {
+                    AllProductsDTO allProductsDTO = new AllProductsDTO();
+                    allProductsDTO.setProductName(productEntity.getName());
+                    allProductsDTO.setProductPrice(productEntity.getPrice());
+                    allProductsDTO.setProductDescription(productEntity.getDescription());
+
+                    List<ProductCategoryEntity> productCategoryEntities = productCategoryRepository.findByProductId(productEntity.getProductId());
+
+                    for(ProductCategoryEntity productCategoryEntity :productCategoryEntities){
+                        CategoryEntity categoryEntity = categoryRepository.findByCategoryid(productCategoryEntity.getCategoryId());
+                        allProductsDTO.setCategoryName(categoryEntity.getName());
+                        allProductsDTO.setCategoryDescription(categoryEntity.getDescription());
+
+                    }
+
+                    List<ProductCommentEntity> productCommentEntityList = productCommentRepository.findByProductId(productEntity.getProductId());
+                    for (ProductCommentEntity commentEntity : productCommentEntityList) {
+                        if (commentEntity.getComment()!=null && !commentEntity.getComment().isEmpty()) {
+                            allProductsDTO.setComment(commentEntity.getComment());
+                            allProductsDTO.setCreateTime(commentEntity.getCreateTime());
+                        }
+                    }
+
+                    listAllProduct.add(allProductsDTO);
+
+
+            }
+
+            return ResponseAllProducts.builder().allProductsDTOS(listAllProduct).status(Constant.SUCCESS).build();
+
+        } catch (Exception e) {
+            return ResponseAllProducts.builder().status(Constant.ERROR).build();
+        }
+
     }
 }

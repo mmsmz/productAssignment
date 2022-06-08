@@ -53,14 +53,9 @@ public class ProductController {
 //    output: result (list of product data including name, description,
 //                    price, product category, product comments [if any]),
 //    status (success / error)
-//    @GetMapping("/listAllPremiumProducts")
-//    public ResponseEntity<ResponseDTO> listAllPremiumProducts(@RequestParam String categoryId) {
-//        ResponseDTO responseDTO = productService.listAllPremiumProducts(categoryId);
-//        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
-//    }
     @GetMapping("/listAllPremiumProducts")
-    public ResponseEntity<ResponseAllProducts> getPremiumProductList(@RequestParam String categoryId) {
-        ResponseAllProducts responseDTO = productService.getPremiumProductList(categoryId);
+    public ResponseEntity<ResponseAllProducts> getPremiumProductList() {
+        ResponseAllProducts responseDTO = productService.getPremiumProductList();
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
