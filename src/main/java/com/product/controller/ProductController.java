@@ -26,7 +26,7 @@ public class ProductController {
 
     /** update a product */
     @PatchMapping("/product")
-    public ResponseEntity<ResponseDTO> updateProduct(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ResponseDTO> updateProduct(@Validated @RequestBody ProductDTO productDTO) {
         ResponseDTO responseDTO = productService.updateProduct(productDTO);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }

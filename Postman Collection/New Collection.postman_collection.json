@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "ddd7ac5e-02f8-4826-a8d1-b420c96066e7",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"name\" : \"prodName\",\r\n    \"description\": \"qwewqe sad sa \",\r\n    \"price\" : 4899,\r\n    \"category\" : \"rrr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55555/product/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\" : \"proId1\",\r\n     \"name\" : \"prod\",\r\n    \"description\": \"asd sad sa \",\r\n    \"price\" : 454,\r\n    \"category\" : \"rrr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55555/product/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55555/product/?productId=proId1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"product",
+						""
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "proId1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55555/listAllProducts?categoryId=cat1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"listAllProducts"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "cat1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PremiumProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55555/listAllPremiumProducts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55555",
+					"path": [
+						"listAllPremiumProducts"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "cat1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
