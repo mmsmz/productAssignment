@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -124,6 +125,9 @@ public class ProductServiceImpl implements ProductService {
                         allProductsDTO.setProductPrice(productDetail.getPrice());
                         allProductsDTO.setProductDescription(productDetail.getDescription());
                     }
+
+                  // filter price > 100
+                  //  List<AllProductsDTO> collect = listAllProduct.stream().filter(i -> i.getProductPrice() > 100).collect(Collectors.toList());
 
                     List<ProductCommentEntity> productCommentEntityList = productCommentRepository.findByProductId(productId.getProductId());
                     for (ProductCommentEntity commentEntity : productCommentEntityList) {

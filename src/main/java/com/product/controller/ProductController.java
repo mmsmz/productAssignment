@@ -21,7 +21,7 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseEntity<ResponseDTO> createProduct(@Validated @RequestBody ProductDTO productDTO) {
         ResponseDTO responseDTO = productService.createProduct(productDTO);
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
     /** update a product */
