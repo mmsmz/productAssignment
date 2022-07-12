@@ -5,3 +5,28 @@ The relationship is not maintain using hibernate.
 - One to many 
 - many to many 
 - 
+
+
+Product table 
+ - proID - primaykey
+ - name
+ - description
+ - Price
+ - Status 
+ - Date of launch 
+ 
+Product Category 
+ - catId - primaykey
+ - Name 
+ - Description
+
+ProCat
+ - proCatId - primaykey
+ - proId - foriegnkey   p1  p2  p1    
+ - catId - foriegnkey   c1  c2  c3
+
+Product Comment table 
+ - proCmntId
+ - Comment 
+ - Created Time
+ - proId  
